@@ -21,12 +21,26 @@ class Contador extends StatefulWidget {
 
 class _ContadorState extends State<Contador> {
 
+  int contador = 0;
+
   void inclement() {
-    print("Incremento");
+    setState(() {
+      if(contador <30){
+        contador++;
+      }
+      
+    });
+    
     
   }
   void declement() {
-    print("Decremento");
+    setState(() {
+      if(contador >0){
+        contador--;
+      }
+      
+    });
+    
   }
 
   @override
@@ -34,20 +48,23 @@ class _ContadorState extends State<Contador> {
     return MaterialApp(
       home: Scaffold(
       // ignore: prefer_const_constructors
-      appBar: Tab(
-        text: "Contador",
-      ),
       backgroundColor: Color.fromARGB(255, 233, 160, 160),
-      body: Column(
+      body: Container(
+        decoration: const BoxDecoration(
+            image: DecorationImage(image: AssetImage('asset/restaurant.png'),
+            fit: BoxFit.cover)
+          ),
+        child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Pode entrar",style: TextStyle(
+          
+          Text(contador<30?"Pode entrar!":"Casa cheia",style: TextStyle(
             fontSize: 30.0,
-            color: Color.fromARGB(255, 68, 55, 184)
+            color: Color.fromARGB(255, 239, 238, 243)
           ),),
-          Text("0",style: TextStyle(
+          Text(contador.toString(),style: TextStyle(
             fontSize: 30.0,
-            color: Color.fromARGB(255, 53, 33, 231)
+            color: Color.fromARGB(255, 242, 242, 245)
           ),),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -95,6 +112,7 @@ class _ContadorState extends State<Contador> {
             ],
           )
         ],
+      ),
       ),
     ),
     title: "Contador 2.0",
